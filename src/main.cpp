@@ -4,7 +4,7 @@
 using namespace std;
 
 // 宣告 function（因為在另一個檔案）
-vector<int> twoSum(vector<int>& nums, int target);
+vector<int> twoSum(const vector<int>& nums, int target);
 
 int main() {
     vector<int> nums = {2, 7, 11, 15};
