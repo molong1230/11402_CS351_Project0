@@ -7,14 +7,14 @@ using namespace std;
 vector<int> twoSum(const vector<int>& nums, int target) {
     unordered_map<int, int> map; // value -> index
 
-    for (int i = 0; i < nums.size(); i++) {
+    for (size_t i = 0; i < nums.size(); ++i) {
         int complement = target - nums[i];
 
         if (map.find(complement) != map.end()) {
-            return {map[complement], i};
+            return {map[complement], static_cast<int>(i)};
         }
 
-        map[nums[i]] = i;
+        map[nums[i]] = static_cast<int>(i);
     }
 
     return {}; // 找不到
