@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Intended Use / Problem Definition
 
 ## 1. Problem Statement
@@ -32,3 +33,5 @@
 - **Key assumptions:** [List assumptions]
 - **Main risks:** [Identify potential issues]
 - **Mitigations:** [Mitigation strategies]
+=======
+>>>>>>> cfe174973f0e1eec96ae4b869b75caf907b549ef
