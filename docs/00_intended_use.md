@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Intended Use / Problem Definition
 
 ## 1. Problem Statement
@@ -19,7 +18,7 @@
 | **Input(s)** | [Describe input format/type] |
 | **Output(s)** | [Describe output format/type] |
 | **Execution environment** | [OS, CLI, etc.] |
- 
+
 ## 4. Success Criteria
 - **Functional:** [e.g., correct conversion/filtering/query results]
 - **Quality:** [e.g., deterministic output, passes tests, CI green]
@@ -33,5 +32,3 @@
 - **Key assumptions:** [List assumptions]
 - **Main risks:** [Identify potential issues]
 - **Mitigations:** [Mitigation strategies]
-=======
->>>>>>> cfe174973f0e1eec96ae4b869b75caf907b549ef
