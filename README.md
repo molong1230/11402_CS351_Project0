@@ -1,58 +1,61 @@
-# Two Sum
+# Two Sum (C++20)
 
+本專案實作 Two Sum 的兩種解法，並提供單元測試、GitHub Actions CI，以及效能比較 benchmark。
 
- * Finds two numbers in the array that add up to the target sum.
- * This function solves the classic Two Sum problem by identifying a pair of distinct elements
- * whose sum equals the specified target value.
- 
- * @param {number[]} nums - Array of integers to search through
- * @param {number} target - The target sum value to find
- * @returns {number[]} Array containing the indices of the two numbers that add up to target
- 
+## 專案結構
 
- ## Requirements
+```
+.
+├── include/
+│   └── twosum.hpp
+├── src/
+│   ├── main.cpp
+│   ├── benchmark.cpp
+│   └── twosum.cpp
+├── tests/
+│   └── test_twosum.cpp
+├── CMakeLists.txt
+└── .github/workflows/build-and-test.yml
+```
 
+## Required Functions
 
- - Use **C++20** as the implementation language.
- - Use **`std::vector<int>`** for the input array and result storage.
+- `twoSumArray(const std::vector<int>& nums, int target)`
+  - 暴力解，時間複雜度 $O(n^2)$
+- `twoSumHashTable(const std::vector<int>& nums, int target)`
+  - 雜湊表解，平均時間複雜度 $O(n)$
 
- - Provide two solution implementations:
-    - **`TwoSumArray`**: a direct array-based approach.
-    - **`TwoSumHashTable`**: a hash-table-based approach using the STL.
+回傳值皆為 `std::vector<int>`：找到解則回傳 `{i, j}`，找不到回傳空 vector。
 
- - Each implementation should:
-    - accept an integer array and a target value,
-    - return the indices of the two maching elements,
-    - avoid using the same element twice.
+## Build & Run
 
- - Include test cases for:
-    - a basic valid example,
-    - negative numbers,
-    - duplicate values,
-    - zero as part of the solution,
-    - small input sizes.
+### Build
 
- - Add **GitHub Actions** to automatically:
-    - build the project,
-    - run all test cases,
-    - trigger on `push` and `pull_request`.
+```
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
 
- - Add **Docker** support to :
-    - build the C++ project in a reproducible environment,
-    - run the test suite inside a container.
-    
+### Run example app
 
-## Detail about GitHub Actions
+```
+./build/TwoSumApp
+```
 
-- Create a `.github/workflows/build-and-test.yml` file in your repository root.
-- Define the workflow to trigger on `push` and `pull_request` events.
-- Use `ubuntu-latest` as the runner environment.
-- Add steps to:
-    - Checkout the repository code using `actions/checkout@v3`.
-    - Install C++20 compiler and build tools (`g++-11` or `clang++-14`).
-    - Install CMake for project configuration.
-    - Configure the project with `cmake -B build`.
-    - Build the project with `cmake --build build`.
-    - Run test cases with `./build/TwoSumTest` or equivalent test executable.
-- Set the workflow to fail if any step returns a non-zero exit code.
-- Optionally add a step to upload test results or coverage reports as artifacts.
+### Run tests
+
+```
+ctest --test-dir build --output-on-failure
+```
+
+### Run benchmark (performance comparison)
+
+```
+./build/TwoSumBenchmark
+```
+
+benchmark 會在可接受的輸入大小上同時跑 `twoSumArray` 與 `twoSumHashTable`，並另外提供一個更大的輸入只跑 hash-table 版，用來展示可擴展性。
+
+## CI
+
+GitHub Actions workflow 位於 `.github/workflows/build-and-test.yml`，會在 `push` 與 `pull_request` 時使用 CMake 建置並執行 `ctest`。

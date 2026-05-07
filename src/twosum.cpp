@@ -1,11 +1,9 @@
-#include <vector>
+#include "twosum.hpp"
+
 #include <unordered_map>
 
-using namespace std;
-
-// 使用 O(n^2) 陣列解法，回傳兩個 index
-vector<int> TwoSumArray(vector<int>& nums, int target) {
-    int n = static_cast<int>(nums.size());
+std::vector<int> twoSumArray(const std::vector<int>& nums, int target) {
+    const int n = static_cast<int>(nums.size());
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
             if (nums[i] + nums[j] == target) {
@@ -13,28 +11,26 @@ vector<int> TwoSumArray(vector<int>& nums, int target) {
             }
         }
     }
-    return {}; // 找不到
+    return {};
 }
 
-// 使用 hash table 解法，回傳兩個 index
-vector<int> TwoSumHashTable(vector<int>& nums, int target) {
-    unordered_map<int, int> map; // value -> index
+std::vector<int> twoSumHashTable(const std::vector<int>& nums, int target) {
+    std::unordered_map<int, int> value_to_index;
+    value_to_index.reserve(nums.size());
 
-    for (int i = 0; i < static_cast<int>(nums.size()); i++) {
-        int complement = target - nums[i];
+    for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
+        const int complement = target - nums[i];
 
-        auto it = map.find(complement);
-        if (it != map.end()) {
+        const auto it = value_to_index.find(complement);
+        if (it != value_to_index.end()) {
             return {it->second, i};
         }
 
-        map[nums[i]] = i;
+        // Keep the earliest index for a value (simplifies duplicate handling).
+        if (!value_to_index.contains(nums[i])) {
+            value_to_index.emplace(nums[i], i);
+        }
     }
 
-    return {}; // 找不到
-}
-
-// 保留原本的介面，預設使用 hash table 解法
-vector<int> twoSum(vector<int>& nums, int target) {
-    return TwoSumHashTable(nums, target);
+    return {};
 }
