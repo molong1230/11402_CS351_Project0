@@ -19,4 +19,4 @@ jobs:
         run: cmake --build build --config Release
 
       - name: Test
-        run: ctest --test-dir build --output-on-failure --build-config Release
+        run: ctest --test-dir build -V --output-on-failure --build-config Release
