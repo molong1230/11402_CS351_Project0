@@ -51,7 +51,13 @@ if(TWOSUM_BUILD_TESTS)
     add_executable(TwoSumTest
         tests/test_twosum.cpp
     )
+    target_include_directories(TwoSumTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
     target_link_libraries(TwoSumTest PRIVATE twosum GTest::gtest_main)
+
+    add_executable(TwoSumPrintCases
+        tests/print_twosum_cases.cpp
+    )
+    target_include_directories(TwoSumPrintCases PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
     include(GoogleTest)
     gtest_discover_tests(TwoSumTest)

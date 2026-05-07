@@ -18,5 +18,8 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
+      - name: Show test cases
+        run: ./build/TwoSumPrintCases
+
       - name: Test
         run: ctest --test-dir build --output-on-failure --build-config Release

@@ -1,4 +1,5 @@
 #include "twosum.hpp"
+#include "twosum_cases.hpp"
 
 #include <gtest/gtest.h>
 
@@ -43,94 +44,74 @@ void expectValidAnswer(const std::vector<int>& nums, int target, const std::vect
 
 } // namespace
 
-TEST(TwoSumArray, BasicExample) {
-    const std::vector<int> nums{2, 7, 11, 15};
-    const int target = 9;
-
-    const auto answer = twoSumArray(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{0, 1}));
+TEST(TwoSumArray, Case1) {
+    const auto& tc = getTwoSumCases().at(0);
+    const auto answer = twoSumArray(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
 }
 
-TEST(TwoSumHashTable, BasicExample) {
-    const std::vector<int> nums{2, 7, 11, 15};
-    const int target = 9;
-
-    const auto answer = twoSumHashTable(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{0, 1}));
+TEST(TwoSumArray, Case2) {
+    const auto& tc = getTwoSumCases().at(1);
+    const auto answer = twoSumArray(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
 }
 
-TEST(TwoSumArray, NegativeNumbers) {
-    const std::vector<int> nums{-1, -2, -3, -4, -5};
-    const int target = -8;
-
-    const auto answer = twoSumArray(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{2, 4}));
+TEST(TwoSumArray, Case3) {
+    const auto& tc = getTwoSumCases().at(2);
+    const auto answer = twoSumArray(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
 }
 
-TEST(TwoSumHashTable, NegativeNumbers) {
-    const std::vector<int> nums{-1, -2, -3, -4, -5};
-    const int target = -8;
-
-    const auto answer = twoSumHashTable(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{2, 4}));
+TEST(TwoSumArray, Case4) {
+    const auto& tc = getTwoSumCases().at(3);
+    const auto answer = twoSumArray(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
 }
 
-TEST(TwoSumArray, DuplicateValues) {
-    const std::vector<int> nums{3, 3};
-    const int target = 6;
-
-    const auto answer = twoSumArray(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{0, 1}));
-}
-
-TEST(TwoSumHashTable, DuplicateValues) {
-    const std::vector<int> nums{3, 3};
-    const int target = 6;
-
-    const auto answer = twoSumHashTable(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{0, 1}));
-}
-
-TEST(TwoSumArray, ZeroInSolution) {
-    const std::vector<int> nums{0, 4, 3, 0};
-    const int target = 0;
-
-    const auto answer = twoSumArray(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{0, 3}));
-}
-
-TEST(TwoSumHashTable, ZeroInSolution) {
-    const std::vector<int> nums{0, 4, 3, 0};
-    const int target = 0;
-
-    const auto answer = twoSumHashTable(nums, target);
-    expectValidAnswer(nums, target, answer);
-    EXPECT_EQ(answer, (std::vector<int>{0, 3}));
-}
-
-TEST(TwoSumArray, SmallInputNoSolution) {
-    const std::vector<int> nums{1};
-    const int target = 2;
-
-    const auto answer = twoSumArray(nums, target);
-    SCOPED_TRACE(::testing::Message() << "nums=" << vectorToString(nums) << ", target=" << target
+TEST(TwoSumArray, Case5) {
+    const auto& tc = getTwoSumCases().at(4);
+    const auto answer = twoSumArray(tc.nums, tc.target);
+    SCOPED_TRACE(::testing::Message() << "nums=" << vectorToString(tc.nums) << ", target=" << tc.target
                                       << ", answer=" << vectorToString(answer));
     EXPECT_TRUE(answer.empty()) << "Expected empty answer";
 }
 
-TEST(TwoSumHashTable, SmallInputNoSolution) {
-    const std::vector<int> nums{1};
-    const int target = 2;
+TEST(TwoSumHashTable, Case1) {
+    const auto& tc = getTwoSumCases().at(0);
+    const auto answer = twoSumHashTable(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
+}
 
-    const auto answer = twoSumHashTable(nums, target);
-    SCOPED_TRACE(::testing::Message() << "nums=" << vectorToString(nums) << ", target=" << target
+TEST(TwoSumHashTable, Case2) {
+    const auto& tc = getTwoSumCases().at(1);
+    const auto answer = twoSumHashTable(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
+}
+
+TEST(TwoSumHashTable, Case3) {
+    const auto& tc = getTwoSumCases().at(2);
+    const auto answer = twoSumHashTable(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
+}
+
+TEST(TwoSumHashTable, Case4) {
+    const auto& tc = getTwoSumCases().at(3);
+    const auto answer = twoSumHashTable(tc.nums, tc.target);
+    expectValidAnswer(tc.nums, tc.target, answer);
+    EXPECT_EQ(answer, tc.expected);
+}
+
+TEST(TwoSumHashTable, Case5) {
+    const auto& tc = getTwoSumCases().at(4);
+    const auto answer = twoSumHashTable(tc.nums, tc.target);
+    SCOPED_TRACE(::testing::Message() << "nums=" << vectorToString(tc.nums) << ", target=" << tc.target
                                       << ", answer=" << vectorToString(answer));
     EXPECT_TRUE(answer.empty()) << "Expected empty answer";
 }
