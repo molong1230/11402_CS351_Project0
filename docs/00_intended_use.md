@@ -1,34 +1,36 @@
 # Intended Use / Problem Definition
 
 ## 1. Problem Statement
-- **What problem does this tool solve?** [Describe the core problem]
-- **Who is the user?** [e.g., developers, analysts, students, etc.]
+- **What problem does this tool solve?** Given an integer array `nums` and an integer `target`, find indices of two *distinct* elements such that their sum equals `target`.
+- **Who is the user?** Students and developers who want to compare two standard approaches (brute force vs hash table) and practice a clean C++/CMake/CI workflow.
 
 ## 2. Intended Use
-[1–3 sentences describing the primary purpose]
+This project provides two implementations of the Two Sum problem and a small benchmark program to compare their performance.
+It is designed for education, CI-based verification, and simple reproducible builds.
 
 **Not intended for:**
-- [Explicit non-goal 1]
-- [Explicit non-goal 2]
+- Production-grade benchmarking (no CPU pinning, no statistical analysis, no perf counters).
+- Extremely large brute-force runs (the $O(n^2)$ implementation is intentionally limited to reasonable sizes in the benchmark).
 
 ## 3. Inputs / Outputs
 
 | Aspect | Details |
 |--------|---------|
-| **Input(s)** | [Describe input format/type] |
-| **Output(s)** | [Describe output format/type] |
-| **Execution environment** | [OS, CLI, etc.] |
+| **Input(s)** | `std::vector<int>` and `int target` (in library functions) |
+| **Output(s)** | `std::vector<int>` containing `{i, j}` if found, otherwise `{}` |
+| **Execution environment** | Cross-platform CLI; built with CMake; CI uses Ubuntu GitHub Actions runner |
 
 ## 4. Success Criteria
-- **Functional:** [e.g., correct conversion/filtering/query results]
-- **Quality:** [e.g., deterministic output, passes tests, CI green]
+- **Functional:** Both `twoSumArray` and `twoSumHashTable` return correct indices for required test cases.
+- **Quality:** Clean build with CMake, unit tests pass locally and in CI, code remains simple and maintainable.
 
 ## 5. Constraints
-- **Language:** C++23 (STL)
-- **Time/Scope:** [Define scope boundaries]
-- **Dependencies:** [External dependency policy]
+- **Language:** C++20 (STL)
+- **Build system:** CMake (minimum 3.20)
+- **Time/Scope:** Small educational project; focus on correctness, unit tests, and basic performance comparison.
+- **Dependencies:** Only GoogleTest for unit tests (via CMake FetchContent).
 
 ## 6. Risks & Assumptions
-- **Key assumptions:** [List assumptions]
-- **Main risks:** [Identify potential issues]
-- **Mitigations:** [Mitigation strategies]
+- **Key assumptions:** There is at most one intended solution for the canonical examples; tests validate correctness rather than returning a specific pair for all possible multi-solution inputs.
+- **Main risks:** Benchmark results can vary across machines; `unordered_map` has worst-case $O(n^2)$ behavior under adversarial hashing.
+- **Mitigations:** Use a fixed RNG seed and report results as informational; keep benchmarks modest and clearly labeled.
