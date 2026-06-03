@@ -37,6 +37,19 @@ CI steps:
 - Configure + build with CMake
 - Run all tests using `ctest`
 
+## Docker
+
+Build a container image (tests run during the image build):
+
+1. Build:
+	- `docker build -t twosum-project .`
+2. Run the example app:
+	- `docker run --rm twosum-project`
+3. Run the benchmark:
+	- `docker run --rm twosum-project ./build/TwoSumBenchmark`
+
+The Dockerfile uses Ubuntu 24.04, installs CMake and build tools, then runs `cmake`, `cmake --build`, and `ctest` in a single build step.
+
 ## Artifacts
 
 No artifacts are uploaded by default.

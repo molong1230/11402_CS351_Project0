@@ -59,3 +59,25 @@ benchmark 會在可接受的輸入大小上同時跑 `twoSumArray` 與 `twoSumHa
 ## CI
 
 GitHub Actions workflow 位於 `.github/workflows/build-and-test.yml`，會在 `push` 與 `pull_request` 時使用 CMake 建置並執行 `ctest`。
+
+## Docker
+
+建置映像檔時會自動編譯專案並執行單元測試（`ctest`）。若測試失敗，映像檔建置也會失敗。
+
+```
+docker build -t twosum-project .
+docker run --rm twosum-project
+```
+
+執行 benchmark：
+
+```
+docker run --rm twosum-project ./build/TwoSumBenchmark
+```
+
+## Complexity Analysis
+
+| 函式 | 時間複雜度 | 空間複雜度 |
+|------|-----------|-----------|
+| `twoSumArray` | $O(n^2)$ | $O(1)$ |
+| `twoSumHashTable` | 平均 $O(n)$ | $O(n)$ |

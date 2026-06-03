@@ -32,6 +32,10 @@
 - Implement benchmark executable with reproducible random input (fixed seed).
 - Compare array vs hash for moderate sizes; include a larger input case for hash-only.
 
+### M6 — Docker packaging
+- Add `Dockerfile` that builds the project and runs `ctest` during image build.
+- Document Docker build/run commands in README and deploy guide.
+
 ## Work Breakdown
 
 | Task | Output | Done When |
@@ -42,6 +46,7 @@
 | Tests | `tests/test_twosum.cpp` | `ctest` passes locally |
 | CI | `.github/workflows/build-and-test.yml` | CI green on push |
 | Benchmark | `src/benchmark.cpp` | Runs and prints timings |
+| Docker | `Dockerfile` | `docker build` succeeds and runs tests |
 
 ## Risks
 - Benchmark variability: results depend on hardware/load.

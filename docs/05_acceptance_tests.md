@@ -47,3 +47,13 @@ Steps:
 Expected result:
 - Workflow completes successfully and shows a green status.
 
+## AT-6: Docker build runs tests
+
+Steps:
+1. Build: `docker build -t twosum-project .`
+2. Run: `docker run --rm twosum-project`
+
+Expected result:
+- Docker build completes successfully (unit tests pass during build).
+- Container prints a valid pair of indices and values for the hard-coded example.
+
